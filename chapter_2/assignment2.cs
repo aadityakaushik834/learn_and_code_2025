@@ -6,9 +6,9 @@ class MyClass
     static void Main()
     {
         // Read N and Q
-        int[] nq = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-        int n = nq[0];
-        int q = nq[1];
+        int[] input = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+        int n = input[0];
+        int q = input[1];
 
         // Read array
         long[] arr = Array.ConvertAll(Console.ReadLine().Split(), long.Parse);
@@ -23,9 +23,9 @@ class MyClass
         // Process queries
         for (int i = 0; i < q; i++)
         {
-            int[] lr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
-            int l = lr[0];
-            int r = lr[1];
+            int[] query = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            int l = query[0];
+            int r = query[1];
 
             long subArraySum = prefixSum[r] - prefixSum[l - 1];
             long length = r - l + 1;

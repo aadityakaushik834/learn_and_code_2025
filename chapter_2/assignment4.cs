@@ -41,7 +41,6 @@ class PlainTextPrinter implements Printer {
 }
  
 class HtmlPrinter implements Printer {
- 
     function printPage($page) {
         echo '<div style="single-page">' . $page . '</div>';
     }

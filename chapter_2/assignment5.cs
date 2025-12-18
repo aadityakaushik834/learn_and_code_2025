@@ -1,13 +1,9 @@
-#include <string>
-#include <iostream>
-using namespace std;
-
-class EmployeeDetails
+Class EmployeeDetails
 {
 int id;
-std::string name;
-std::string department;
-bool working;
+string name;
+string department;
+bool: working_or_not
 
 public:
 saveEmployeeTODatabase()
