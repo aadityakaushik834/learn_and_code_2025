@@ -1,0 +1,43 @@
+1) Redundant Comments
+// This method processes an order
+// Check if order is null
+// Validate the order
+// Check inventory
+// If no inventory, return failure
+// Reserve inventory
+// Process payment
+// Check if payment succeeded
+// Update inventory
+// Send confirmation email
+// Return success
+// Payment failed, release inventory
+// Return failure
+// Update status
+// Log the error
+// Get the order
+// Refund the payment
+// Give back the items
+// Gets order by ID
+// Saves the order
+// Throw it
+
+
+2) Noisy Comments
+// This is important!!!
+// Something went wrong
+// Implementation here
+// Implementation here
+
+3) attribution comment
+// Added by John on 12/15/2023 - needed for the new feature
+
+4) Misleading Comments
+// John says we need to refund here
+
+
+
+Reflection  Key Learnings
+    Most comments were just repeating what the code does, which adds noise and becomes outdated.
+    Good comments should explain why.
+    Version history belongs in Git, not in comments.
+    Clear naming and clean structure reduce the need for comments.
