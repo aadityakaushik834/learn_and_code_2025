@@ -1,4 +1,5 @@
-import java.math.BigDecimal;import java.time.LocalDateTime; 
+import java.math.BigDecimal;
+import java.time.LocalDateTime; 
 import java.util.*; 
 package com.payment.processing; 
 
@@ -6,7 +7,7 @@ public class PaymentProcessor{
     private static final BigDecimal MIN_AMOUNT = new BigDecimal("0.01"); 
     private static final int MAX_RETRIES = 2; 
     private static final String PAYMENT_SUCCESS = "Payment successful"; 
-    private static final String PAYMENT_FAILED = "Payment failed"; 
+    private static final String PAYMENT_FAILED = "Payment failed";
 
     private Logger logger;
     private NotificationService notifier; 
@@ -16,34 +17,6 @@ public class PaymentProcessor{
         this.logger = logger;
         this.notifier = notifier; 
         this.history = new HashMap<>();
-    }
-
-    private void validate(PaymentRequest request){ 
-        if(request.customerId() == null || request.customerId().isBlank()){ 
-            throw new IllegalArgumentException("Customer ID required");
-        }
-        if(request.amount() == null || request.amount().compareTo(MIN_AMOUNT) < 0){ 
-            throw new IllegalArgumentException("Invalid amount");
-        }
-    }
-
-    private void record(PaymentRequest request){ 
-        history.put(generateId(),new PaymentRecord(request.customerId(),request.amount(),LocalDateTime.now()));
-    } 
-    
-    private void notifySuccess(PaymentRequest request){ 
-        notifier.send(request.customerId(),"Payment of " + request.amount() + " processed");
-    } 
-
-    private String generateId(){ 
-        return "TXN-" + System.currentTimeMillis();
-    }
-
-    private void execute(PaymentRequest request){ 
-        logger.log("Executing payment of " + request.amount()); 
-        if(request.amount().compareTo(new BigDecimal("5000")) > 0){ 
-            throw new PaymentException("Limit exceeded");
-        }
     }
 
     public PaymentResult process(PaymentRequest request){ 
@@ -64,4 +37,33 @@ public class PaymentProcessor{
         }
         return new PaymentResult(false,PAYMENT_FAILED,null);
     } 
+
+    private void validate(PaymentRequest request){ 
+        if(request.customerId() == null || request.customerId().isBlank()){ 
+            throw new IllegalArgumentException("Customer ID required");
+        }
+        if(request.amount() == null || request.amount().compareTo(MIN_AMOUNT) < 0){ 
+            throw new IllegalArgumentException("Invalid amount");
+        }
+    }
+
+    private void record(PaymentRequest request){ 
+        history.put(generateId(),
+        new PaymentRecord(request.customerId(),request.amount(),LocalDateTime.now()));
+    } 
+    
+    private void notifySuccess(PaymentRequest request){ 
+        notifier.send(request.customerId(),"Payment of " + request.amount() + " processed");
+    } 
+
+    private String generateId(){ 
+        return "TXN-" + System.currentTimeMillis();
+    }
+
+    private void execute(PaymentRequest request){ 
+        logger.log("Executing payment of " + request.amount()); 
+        if(request.amount().compareTo(new BigDecimal("5000")) > 0){ 
+            throw new PaymentException("Limit exceeded");
+        }
+    }
 } 
