@@ -1,4 +1,5 @@
-import java.math.BigDecimal;import java.time.LocalDateTime; 
+import java.math.BigDecimal;
+import java.time.LocalDateTime; 
 import java.util.*; 
 package com.payment.processing; 
 
@@ -47,7 +48,8 @@ public class PaymentProcessor{
     }
 
     private void record(PaymentRequest request){ 
-        history.put(generateId(),new PaymentRecord(request.customerId(),request.amount(),LocalDateTime.now()));
+        history.put(generateId(),
+        new PaymentRecord(request.customerId(),request.amount(),LocalDateTime.now()));
     } 
     
     private void notifySuccess(PaymentRequest request){ 
